@@ -17,7 +17,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Administrator Panel</title>
+    <title>Administrator Panel - Audio Upload</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -54,8 +54,8 @@
           </div>
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="audio.php">Audio</a></li>
+                <li><a href="index.php">Home</a></li>
+                <li class="active"><a href="#">Audio</a></li>
                 <li><a href="event.php">Events</a></li>
 			    <li><a href="presentation.php">Documents</a></li>
                 <li><a href="logout.php">Logout</a></li>
@@ -67,15 +67,25 @@
       <!-- Begin page content -->
       <div class="container">
         <div class="page-header">
-          <h1>Welcome to Administration Panel</h1>
+          <h1>Upload Panel for Audio Files</h1>
         </div>
-        <p class="lead">Using this panel, the following items can be uploaded/added to the website :<br>
-            &#9679; Audio Recordings<br>
-            &#9679; Events<br>
-            &#9679; Presentations &amp; Documents<br>
-          </p>
-          
-      </div>
+        <div class="col-md-4">
+      <form method='POST' enctype="multipart/form-data"  action='audio_upload.php'>
+        <div id="from-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="File Name" required>
+        </div>
+        <br>
+        <div class="form-group">
+        <label for="fileupload">File input</label>
+        <input type="file" id="fileupload" name="filename" required>
+        <p class="help-block">Browse through your computer and upload file</p>
+        </div>
+        <button type="submit" class="btn btn-default btn-lg">Click here to uplaod the Audio</button>
+        
+    </form>
+    </div>
+    </div>
     </div>
 
     <div id="footer">

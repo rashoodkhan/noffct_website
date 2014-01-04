@@ -1,13 +1,3 @@
-<?php
-	session_start();
-	session_regenerate_id();
-	if(!isset($_SESSION['username']))     
-	{
-    	header("Location: login.html");
-	}
-	echo "Succesfully Signed In";
-?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
-    <title>Administrator Panel</title>
+    <title>Sticky Footer Navbar Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -50,15 +41,25 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php">Administrative Panel</a>
+            <a class="navbar-brand" href="#">Project name</a>
           </div>
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="audio.php">Audio</a></li>
-                <li><a href="event.php">Events</a></li>
-			    <li><a href="presentation.php">Documents</a></li>
-                <li><a href="logout.php">Logout</a></li>
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li class="dropdown-header">Nav header</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
+                </ul>
+              </li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -67,20 +68,16 @@
       <!-- Begin page content -->
       <div class="container">
         <div class="page-header">
-          <h1>Welcome to Administration Panel</h1>
+          <h1>Sticky footer with fixed navbar</h1>
         </div>
-        <p class="lead">Using this panel, the following items can be uploaded/added to the website :<br>
-            &#9679; Audio Recordings<br>
-            &#9679; Events<br>
-            &#9679; Presentations &amp; Documents<br>
-          </p>
-          
+        <p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added within <code>#wrap</code> with <code>padding-top: 60px;</code> on the <code>.container</code>.</p>
+        <p>Back to <a href="../sticky-footer">the default sticky footer</a> minus the navbar.</p>
       </div>
     </div>
 
     <div id="footer">
       <div class="container">
-        <p class="text-muted">Developed by MediaMechanic</p>
+        <p class="text-muted">Place sticky footer content here.</p>
       </div>
     </div>
 

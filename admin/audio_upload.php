@@ -1,13 +1,13 @@
 <?php
-	session_start();
+    session_start();
 	session_regenerate_id();
 	if(!isset($_SESSION['username']))     
 	{
     	header("Location: login.html");
 	}
-	echo "Succesfully Signed In";
-?>
 
+    require 'db_connect.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -54,8 +54,8 @@
           </div>
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="audio.php">Audio</a></li>
+                <li><a href="index.php">Home</a></li>
+                <li class="active"><a href="#">Audio</a></li>
                 <li><a href="event.php">Events</a></li>
 			    <li><a href="presentation.php">Documents</a></li>
                 <li><a href="logout.php">Logout</a></li>
@@ -67,14 +67,42 @@
       <!-- Begin page content -->
       <div class="container">
         <div class="page-header">
-          <h1>Welcome to Administration Panel</h1>
+          <h1>Audio File Upload Panel</h1>
         </div>
-        <p class="lead">Using this panel, the following items can be uploaded/added to the website :<br>
-            &#9679; Audio Recordings<br>
-            &#9679; Events<br>
-            &#9679; Presentations &amp; Documents<br>
-          </p>
-          
+    
+<?php
+
+    $name = $_POST['name'];
+    $file = $_FILES['filename']['name'];
+    
+    $query = "SELECT * FROM `audio_details` WHERE `name` LIKE '".$name."' LIMIT 0 , 30";
+    $search = mysql_query($query);
+    $numRows = mysql_num_rows($search);
+    if($numRows > 0){
+        echo '<p class="lead">The File already exists. Please Upload the file with different name.<br>You are being Re-directed to Audio Upload Page</p>';
+        header('Refresh: 5; URL=audio.php');
+        exit();
+    }
+
+    $updateQuery = "INSERT INTO `noffct`.`audio_details` (`name`,`file_name`,`date_uploaded`) VALUES ('$name','$file', now())";
+    $resultUpdate = mysql_query($updateQuery);
+    if(!$resultUpdate){
+             echo '<p class="lead">Error Uploading the file. Please try again later.<br>You are being re-directed to Audio Upload Page</p>';
+            header('Refresh: 5; URL=audio.php');
+	       exit();
+    }
+    
+    $uploadDir = "audio_uploaded/";
+    if (move_uploaded_file($_FILES['filename']['tmp_name'], "$uploadDir$file") ==  false) {
+        echo '<p class="lead">Error Uploading the file. Please try again later.<br>You are being re-directed to Audio Upload Page</p>';
+	   header('Refresh: 5; URL=audio.php');
+	   exit();
+    }
+
+    echo "<p class='lead'>The file $name has been uploaded successfully.<br>You will be re-directed to Administration Portal now.";
+    header('Refresh: 5; URL=index.php');
+?>
+
       </div>
     </div>
 
