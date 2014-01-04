@@ -81,7 +81,7 @@
         <input type="file" id="fileupload" name="filename" required>
         <p class="help-block">Browse through your computer and upload file</p>
         </div>
-        <button type="submit" class="btn btn-default btn-lg">Click here to uplaod the Audio</button>
+        <button type="submit" class="btn btn-default btn-lg">Click here to upload the Audio</button>
         
     </form>
     </div>
