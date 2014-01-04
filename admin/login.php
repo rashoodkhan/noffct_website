@@ -29,7 +29,7 @@
 
     <div class="container">
 
-      <form class="form-signin" role="form">
+      <form class="form-signin" role="form" action="login_verify.php" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
         <input name="username"type="text" class="form-control" placeholder="Email address" required autofocus>
         <input name="password" type="password" class="form-control" placeholder="Password" required>
