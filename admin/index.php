@@ -55,7 +55,7 @@
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
-                <li><a href="audio.php">Audio</a></li>
+                <li><a href="audio.php">Audio/Video</a></li>
                 <li><a href="event.php">Events</a></li>
 			    <li><a href="presentation.php">Documents</a></li>
                 <li><a href="logout.php">Logout</a></li>
