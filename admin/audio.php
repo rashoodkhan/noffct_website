@@ -55,7 +55,7 @@
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="index.php">Home</a></li>
-                <li class="active"><a href="#">Audio</a></li>
+                <li class="active"><a href="#">Audio/Video</a></li>
                 <li><a href="event.php">Events</a></li>
 			    <li><a href="presentation.php">Documents</a></li>
                 <li><a href="logout.php">Logout</a></li>
@@ -67,7 +67,7 @@
       <!-- Begin page content -->
       <div class="container">
         <div class="page-header">
-          <h1>Upload Panel for Audio Files</h1>
+          <h1>Upload Panel for Audio/Video Files</h1>
         </div>
         <div class="col-md-4">
       <form method='POST' enctype="multipart/form-data"  action='audio_upload.php'>
@@ -75,13 +75,20 @@
             <label for="name">Name</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="File Name" required>
         </div>
+          <br>
+          <div id="form-group">
+            <select class="form-control" name="selector">
+              <option value="Audio">Audio</option>
+                <option value="Video">Video</option>
+              </select>
+          </div>
         <br>
         <div class="form-group">
         <label for="fileupload">File input</label>
         <input type="file" id="fileupload" name="filename" required>
         <p class="help-block">Browse through your computer and upload file</p>
         </div>
-        <button type="submit" class="btn btn-default btn-lg">Click here to upload the Audio</button>
+        <button type="submit" class="btn btn-default btn-lg btn-block">Click here to upload</button>
         
     </form>
     </div>

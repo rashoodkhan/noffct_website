@@ -74,33 +74,67 @@
 
     $name = $_POST['name'];
     $file = $_FILES['filename']['name'];
-    
-    $query = "SELECT * FROM `audio_details` WHERE `name` LIKE '".$name."' LIMIT 0 , 30";
-    $search = mysql_query($query);
-    $numRows = mysql_num_rows($search);
-    if($numRows > 0){
-        echo '<p class="lead">The File already exists. Please Upload the file with different name.<br>You are being Re-directed to Audio Upload Page</p>';
-        header('Refresh: 5; URL=audio.php');
-        exit();
-    }
+    $selector = $_POST['selector'];
 
-    $updateQuery = "INSERT INTO `noffct`.`audio_details` (`name`,`file_name`,`date_uploaded`) VALUES ('$name','$file', now())";
-    $resultUpdate = mysql_query($updateQuery);
-    if(!$resultUpdate){
-             echo '<p class="lead">Error Uploading the file. Please try again later.<br>You are being re-directed to Audio Upload Page</p>';
+    if($selector == "Audio"){
+        $query = "SELECT * FROM `audio_details` WHERE `name` LIKE '".$name."' LIMIT 0 , 30";
+        $search = mysql_query($query);
+        $numRows = mysql_num_rows($search);
+        if($numRows > 0){
+            echo '<p class="lead">The File already exists. Please Upload the file with different name.<br>You are being Re-directed to Audio Upload Page</p>';
             header('Refresh: 5; URL=audio.php');
+            exit();
+        }
+
+        $updateQuery = "INSERT INTO `noffct`.`audio_details` (`name`,`file_name`,`date_uploaded`) VALUES ('$name','$file', now())";
+        $resultUpdate = mysql_query($updateQuery);
+        if(!$resultUpdate){
+            echo '<p class="lead">Error Uploading the file. Please try again later.<br>You are being re-directed to Audio Upload Page</p>';
+            header('Refresh: 5; URL=audio.php');
+            exit();
+        }
+    
+        $uploadDir = "audio_uploaded/";
+        if (move_uploaded_file($_FILES['filename']['tmp_name'], "$uploadDir$file") ==  false) {
+            echo '<p class="lead">Error Uploading the file. Please try again later.<br>You are being re-directed to Audio Upload Page</p>';
+	       header('Refresh: 5; URL=audio.php');
 	       exit();
+        }
+
+        echo "<p class='lead'>The file $name has been uploaded successfully.<br>You will be re-directed to Administration Portal now.";
+        header('Refresh: 5; URL=index.php');
     }
     
-    $uploadDir = "audio_uploaded/";
-    if (move_uploaded_file($_FILES['filename']['tmp_name'], "$uploadDir$file") ==  false) {
-        echo '<p class="lead">Error Uploading the file. Please try again later.<br>You are being re-directed to Audio Upload Page</p>';
-	   header('Refresh: 5; URL=audio.php');
-	   exit();
+    else if($selector == "Video"){
+        $query = "SELECT * FROM `video_details` WHERE `name` LIKE $name LIMIT 0,30";
+        $search = mysql_query($query);
+        $numRows = mysql_num_rows($search);
+        
+        if($numRows > 0) {
+            echo '<p class="lead">The File already exists. Please Upload the file with different name.<br>You are being Re-directed to Upload Page</p>';
+            header('Refresh: 5; URL=audio.php');
+            exit();
+        }
+
+        $updateQuery = "INSERT INTO `noffct`.`video_details` (`name`,`file_name`,`date_uploaded`) VALUES ('$name','$file', now())";
+        $resultUpdate = mysql_query($updateQuery);
+        if(!$resultUpdate){
+            echo '<p class="lead">Error Uploading the file. Please try again later.<br>You are being re-directed to Upload Page</p>';
+            header('Refresh: 5; URL=audio.php');
+            exit();
+        }
+    
+        $uploadDir = "video_uploaded/";
+        if (move_uploaded_file($_FILES['filename']['tmp_name'], "$uploadDir$file") ==  false) {
+            echo '<p class="lead">Error Uploading the file. Please try again later.<br>You are being re-directed to Upload Page</p>';
+	       header('Refresh: 5; URL=audio.php');
+	       exit();
+        }
+
+        echo "<p class='lead'>The file $name has been uploaded successfully.<br>You will be re-directed to Administration Portal now.";
+        header('Refresh: 5; URL=index.php');
     }
 
-    echo "<p class='lead'>The file $name has been uploaded successfully.<br>You will be re-directed to Administration Portal now.";
-    header('Refresh: 5; URL=index.php');
 ?>
 
       </div>
